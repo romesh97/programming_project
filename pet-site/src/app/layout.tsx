@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@mui/material/styles";
-import CustomTheme from "@/themes/theme";
+import CustomTheme from "./themes/custom";
 import { Box, CssBaseline } from "@mui/material";
 import Footer from "./components/common/footer";
 
@@ -30,11 +30,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Box component="div" className="container">
-          <CssBaseline />
-          {children}
-        </Box>
-        <Footer />
+        <ThemeProvider theme={CustomTheme}>
+          {/* <SnackbarProvider maxSnack={3}>
+            <AuthContextProvider> */}
+          <Box component="div" className="container">
+            <CssBaseline />
+            {/* <TopNavbar /> */}
+            {children}
+          </Box>
+          <Footer />
+          {/* </AuthContextProvider>
+          </SnackbarProvider> */}
+        </ThemeProvider>
+
       </body>
 
     </html>
