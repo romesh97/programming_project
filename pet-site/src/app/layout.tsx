@@ -5,6 +5,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import CustomTheme from "./themes/custom";
 import { Box, CssBaseline } from "@mui/material";
 import Footer from "./components/common/footer";
+import Header from "./components/common/header";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -31,16 +32,14 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <ThemeProvider theme={CustomTheme}>
-          {/* <SnackbarProvider maxSnack={3}>
-            <AuthContextProvider> */}
+
           <Box component="div" className="container">
             <CssBaseline />
-            {/* <TopNavbar /> */}
+            <Header />
             {children}
           </Box>
           <Footer />
-          {/* </AuthContextProvider>
-          </SnackbarProvider> */}
+
         </ThemeProvider>
 
       </body>
