@@ -18,7 +18,7 @@ import {
     Avatar,
     Stack,
 } from "@mui/material";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 interface Link {
     id: number;
@@ -37,7 +37,6 @@ const links: Link[] = [
 ];
 
 const TopNavbar: React.FC = () => {
-    const router = useRouter();
     const [isLoaded, setIsLoaded] = useState<boolean>(true);
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [name, setName] = useState<string>("");

@@ -2,7 +2,6 @@ import {
     Container,
     Typography,
     Box,
-    Link,
     Stack,
     Grid,
     IconButton,
@@ -12,11 +11,11 @@ import {
 // Icons
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import EmailIcon from "@mui/icons-material/Email";
-import GroupsIcon from "@mui/icons-material/Groups";
+
 //social Icons
-import FacebookIcon from "@mui/icons-material/Facebook";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
+// import FacebookIcon from "@mui/icons-material/Facebook";
+// import InstagramIcon from "@mui/icons-material/Instagram";
+// import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 //TODO: Fix icons issue
 const Footer: React.FC = () => {
