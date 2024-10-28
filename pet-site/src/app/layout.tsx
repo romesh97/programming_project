@@ -4,8 +4,8 @@ import "./globals.css";
 import { ThemeProvider } from "@mui/material/styles";
 import CustomTheme from "./themes/custom";
 import { Box, CssBaseline } from "@mui/material";
-import Footer from "./components/common/footer";
-import Header from "./components/common/header";
+import Footer from "./components/common/footer/page";
+import Header from "./components/common/header/page";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",

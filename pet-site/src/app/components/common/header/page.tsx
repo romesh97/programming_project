@@ -29,13 +29,13 @@ interface Link {
 
 const links: Link[] = [
   { id: 1, title: "Home", url: "/", isLogged: false },
-  { id: 2, title: "Pets", url: "/all-pets", isLogged: true },
+  { id: 2, title: "Pets", url: "/all-pets", isLogged: false },
   { id: 3, title: "About", url: "/about", isLogged: false },
-  { id: 4, title: "Profile", url: "/profile", isLogged: true },
+  { id: 4, title: "Profile", url: "/profile", isLogged: false },
 ];
 
 const TopNavbar: React.FC = () => {
-  const [isLoaded, setIsLoaded] = useState<boolean>(true);
+  // const [isLoaded, setIsLoaded] = useState<boolean>(true);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [name, setName] = useState<string>("");
   const open = Boolean(anchorEl);
@@ -49,20 +49,20 @@ const TopNavbar: React.FC = () => {
     setAnchorEl(null);
   };
 
-  if (!isLoaded) {
-    return (
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100dvh",
-        }}
-      >
-        <CircularProgress color="secondary" />
-      </Box>
-    );
-  }
+  // if (!isLoaded) {
+  //   return (
+  //     <Box
+  //       sx={{
+  //         display: "flex",
+  //         justifyContent: "center",
+  //         alignItems: "center",
+  //         height: "100dvh",
+  //       }}
+  //     >
+  //       <CircularProgress color="secondary" />
+  //     </Box>
+  //   );
+  // }
 
   return (
     <AppBar position="sticky" sx={{ background: "white" }}>
