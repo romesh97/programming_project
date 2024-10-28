@@ -1,3 +1,4 @@
+"use client";
 import {
     Container,
     Typography,
@@ -11,11 +12,13 @@ import {
 // Icons
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import EmailIcon from "@mui/icons-material/Email";
+import GroupsIcon from "@mui/icons-material/Groups"; 
 
 //social Icons
-// import FacebookIcon from "@mui/icons-material/Facebook";
-// import InstagramIcon from "@mui/icons-material/Instagram";
-// import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import Link from "next/link";
 
 //TODO: Fix icons issue
 const Footer: React.FC = () => {
@@ -77,6 +80,32 @@ const Footer: React.FC = () => {
                         sm={4}
                         sx={{ display: "flex", justifyContent: "center" }}
                     >
+                        <Stack
+                            display="flex"
+                            flexDirection="row"
+                            alignItems="center"
+                            gap={2}
+                        >
+                            <IconButton color="secondary">
+                                <GroupsIcon sx={{ height: 40, width: 40, color: "white" }} />
+                            </IconButton>
+                            <Box>
+                                <Typography variant="h5" color="white" gutterBottom>
+                                    Follow us
+                                </Typography>
+                                <Stack direction="row" alignItems="center" spacing={1}>
+                                    <Link href="https://www.facebook.com/" color="secondary">
+                                        <FacebookIcon sx={{ height: 22, width: 22 }} />
+                                    </Link>
+                                    <Link href="https://www.facebook.com/" color="secondary">
+                                        <InstagramIcon sx={{ height: 22, width: 22 }} />
+                                    </Link>
+                                    <Link href="https://www.facebook.com/" color="secondary">
+                                        <LinkedInIcon sx={{ height: 22, width: 22 }} />
+                                    </Link>
+                                </Stack>
+                            </Box>
+                        </Stack>
 
                     </Grid>
                 </Grid>
