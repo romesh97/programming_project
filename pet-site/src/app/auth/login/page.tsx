@@ -1,33 +1,22 @@
+// src/app/auth/login/page.tsx
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button, TextField, Typography, Container, Box } from "@mui/material";
 import Link from "next/link";
 
-const Register: React.FC = () => {
-  const [name, setName] = useState<string>("");
+const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
   return (
     <Container maxWidth="xs" sx={{ height: "70vh" }}>
-      <Box mt={8}>
+      <Box py={8}>
         <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
-          Create A New Account
+          Login
         </Typography>
         <Box component="form">
           <TextField
-            label="Name"
-            variant="outlined"
-            fullWidth
-            margin="normal"
-            value={name}
-            autoComplete="name"
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-          <TextField
             label="Email"
-            type="email"
             variant="outlined"
             fullWidth
             margin="normal"
@@ -35,7 +24,6 @@ const Register: React.FC = () => {
             autoComplete="email"
             onChange={(e) => setEmail(e.target.value)}
             required
-            // helperText="Please enter a valid email address"
           />
           <TextField
             label="Password"
@@ -44,15 +32,15 @@ const Register: React.FC = () => {
             fullWidth
             margin="normal"
             value={password}
+            autoComplete="current-password"
             onChange={(e) => setPassword(e.target.value)}
             required
-            autoComplete="new-password"
-            helperText="Password should be at least 6 characters long"
           />
+
           <Button
             type="submit"
             variant="contained"
-            color="primary"
+            color="secondary"
             fullWidth
             sx={{
               mt: 4,
@@ -65,8 +53,9 @@ const Register: React.FC = () => {
               },
             }}
           >
-            Register
+            Login
           </Button>
+
           <Box
             display="flex"
             justifyContent="center"
@@ -74,18 +63,18 @@ const Register: React.FC = () => {
             gap={1}
           >
             <Typography variant="h6" textAlign="center" sx={{ color: "#777" }}>
-              Have an Account ?
+              Dont have an Account ?
             </Typography>
             <Link
-              href="/auth/login"
+              href="/auth/signup"
               prefetch={false}
               style={{
                 color: "#F0801A !important",
                 fontWeight: 500,
-                backgroundColor: "F0801A"
+                backgroundColor: "F0801A",
               }}
             >
-              Login
+              Register
             </Link>
           </Box>
         </Box>
@@ -94,4 +83,4 @@ const Register: React.FC = () => {
   );
 };
 
-export default Register;
+export default Login;
