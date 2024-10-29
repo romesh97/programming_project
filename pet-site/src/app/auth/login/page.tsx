@@ -1,12 +1,56 @@
 // src/app/auth/login/page.tsx
 "use client";
 import { useState } from "react";
-import { Button, TextField, Typography, Container, Box } from "@mui/material";
+import {
+  Button,
+  TextField,
+  Typography,
+  Container,
+  Box,
+  CircularProgress,
+} from "@mui/material";
 import Link from "next/link";
+import { login } from "@/app/services/authService";
+import { useRouter } from "next/navigation";
 
 const Login: React.FC = () => {
+  const router = useRouter();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const handelLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+    // setMessage(null);
+    try {
+      await login({
+        email: email,
+        password: password,
+      });
+
+      router.push("/dashboard");
+    } catch (err: any) {
+      if (
+        err.response.data.details === "Firebase: Error (auth/invalid-email)."
+      ) {
+        setError("Invalid email address");
+        // alert("The email address is already in use by another account.");
+      } else if (
+        err.response.data.details ===
+        "Firebase: Error (auth/invalid-credential)."
+      ) {
+        setError("Invalid Credentials");
+      } else {
+        setError("An unexpected error occurred");
+      }
+      console.error("Login error:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <Container maxWidth="xs" sx={{ height: "70vh" }}>
@@ -14,7 +58,7 @@ const Login: React.FC = () => {
         <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
           Login
         </Typography>
-        <Box component="form">
+        <Box component="form" onSubmit={handelLogin}>
           <TextField
             label="Email"
             variant="outlined"
@@ -53,8 +97,13 @@ const Login: React.FC = () => {
               },
             }}
           >
-            Login
+            {loading ? <CircularProgress size={24} /> : "Login"}
           </Button>
+          {error && (
+            <Typography variant="body2" color="error" mt={2}>
+              {error}
+            </Typography>
+          )}
 
           <Box
             display="flex"
