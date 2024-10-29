@@ -1,12 +1,54 @@
 "use client";
 import React, { useState } from "react";
-import { Button, TextField, Typography, Container, Box } from "@mui/material";
+import {
+  Button,
+  TextField,
+  Typography,
+  Container,
+  Box,
+  CircularProgress,
+  
+} from "@mui/material";
 import Link from "next/link";
+import { register } from "@/app/services/authService";
+import { useRouter } from "next/navigation";
 
 const Register: React.FC = () => {
+  const router = useRouter();
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const handleRegister = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+    // setMessage(null);
+    try {
+      await register({
+        email: email,
+        firstName: name,
+        password: password,
+      });
+    
+      router.push("/auth/login");
+    } catch (err: any) {
+      if (
+        err.response.data.details ===
+        "The email address is already in use by another account."
+      ) {
+        setError("The email address is already in use by another account.")
+        // alert("The email address is already in use by another account.");
+      } else {
+        alert("Registration error");
+      }
+      console.error("Registration error:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <Container maxWidth="xs" sx={{ height: "70vh" }}>
@@ -14,7 +56,7 @@ const Register: React.FC = () => {
         <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
           Create A New Account
         </Typography>
-        <Box component="form">
+        <Box component="form" onSubmit={handleRegister}>
           <TextField
             label="Name"
             variant="outlined"
@@ -46,8 +88,6 @@ const Register: React.FC = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            autoComplete="new-password"
-            helperText="Password should be at least 6 characters long"
           />
           <Button
             type="submit"
@@ -65,8 +105,13 @@ const Register: React.FC = () => {
               },
             }}
           >
-            Register
+            {loading ? <CircularProgress size={24} /> : "Register"}
           </Button>
+          {error && (
+            <Typography variant="body2" color="error" mt={2}>
+              {error}
+            </Typography>
+          )}
           <Box
             display="flex"
             justifyContent="center"
@@ -82,7 +127,7 @@ const Register: React.FC = () => {
               style={{
                 color: "#F0801A !important",
                 fontWeight: 500,
-                backgroundColor: "F0801A"
+                backgroundColor: "F0801A",
               }}
             >
               Login
