@@ -7,6 +7,10 @@ import { Box, CssBaseline } from "@mui/material";
 import Footer from "./components/common/footer/page";
 import Header from "./components/common/header/page";
 
+//snackbar
+// import { SnackbarProvider } from "notistack";
+import { Suspense } from "react";
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -32,18 +36,18 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <ThemeProvider theme={CustomTheme}>
-
-          <Box component="div" className="container">
-            <CssBaseline />
-            <Header />
-            {children}
-          </Box>
-          <Footer />
-
+          {/* <SnackbarProvider maxSnack={3}> */}
+            <Suspense fallback={<div>Loading...</div>}>
+              <Box component="div" className="container">
+                <CssBaseline />
+                <Header />
+                {children}
+              </Box>
+              <Footer />
+            </Suspense>
+          {/* </SnackbarProvider> */}
         </ThemeProvider>
-
       </body>
-
     </html>
   );
 }
