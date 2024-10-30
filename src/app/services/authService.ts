@@ -17,3 +17,11 @@ export const login = async (data: { email: string; password: string }) => {
     data
   );
 };
+
+export const getAllPosts = async () => {
+  const response = await axios.get(
+    `http://127.0.0.1:5001/emerald-eon-438919-g7/us-central1/api/getAllPosts`
+  );
+  return response.data;
+};
+
