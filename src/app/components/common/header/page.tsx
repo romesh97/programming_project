@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -18,7 +18,8 @@ import {
   Avatar,
   Stack,
 } from "@mui/material";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useAuth } from "@/app/context/authContext";
 
 interface Link {
   id: number;
@@ -29,13 +30,14 @@ interface Link {
 
 const links: Link[] = [
   { id: 1, title: "Home", url: "/", isLogged: false },
-  { id: 2, title: "Pets", url: "/all-pets", isLogged: false },
-  { id: 3, title: "About", url: "/about", isLogged: false },
-  { id: 4, title: "Profile", url: "/profile", isLogged: false },
+  { id: 2, title: "About", url: "/about", isLogged: false },
+  { id: 3, title: "Profile", url: "/profile", isLogged: false },
 ];
 
 const TopNavbar: React.FC = () => {
-  // const [isLoaded, setIsLoaded] = useState<boolean>(true);
+  const [isLoaded, setIsLoaded] = useState<boolean>(true);
+  const router = useRouter();
+  const { isLoggedIn, user, logout } = useAuth();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [name, setName] = useState<string>("");
   const open = Boolean(anchorEl);
@@ -49,20 +51,37 @@ const TopNavbar: React.FC = () => {
     setAnchorEl(null);
   };
 
-  // if (!isLoaded) {
-  //   return (
-  //     <Box
-  //       sx={{
-  //         display: "flex",
-  //         justifyContent: "center",
-  //         alignItems: "center",
-  //         height: "100dvh",
-  //       }}
-  //     >
-  //       <CircularProgress color="secondary" />
-  //     </Box>
-  //   );
-  // }
+  useEffect(() => {
+    if (isLoggedIn && user) {
+      setName(user.name || "");
+    }
+    setIsLoaded(true);
+  }, [isLoggedIn, user]);
+
+  const handleLogout = async () => {
+    try {
+      router.push("/");
+      logout();
+      handleClose();
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  };
+
+  if (!isLoaded) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100dvh",
+        }}
+      >
+        <CircularProgress color="secondary" />
+      </Box>
+    );
+  }
 
   return (
     <AppBar position="sticky" sx={{ background: "white" }}>
@@ -110,72 +129,78 @@ const TopNavbar: React.FC = () => {
             </Box>
           ))}
         </Box>
-
-        <Link href="/auth/signup" passHref>
-          <Button
-            color="inherit"
-            sx={{ textTransform: "none", color: "#000000", fontWeight: 600 }}
-          >
-            Signup
-          </Button>
-        </Link>
-
-        <Box
-          display="flex"
-          flexDirection="row"
-          alignItems="center"
-          justifyContent="flex-end"
-          sx={{ pl: 2 }}
-        >
-          <Avatar sx={{ width: 30, height: 30 }} sizes="small">
-            {name.charAt(0)}
-          </Avatar>
-          <IconButton
-            aria-label="more"
-            id="long-button"
-            aria-controls={open ? "long-menu" : undefined}
-            aria-expanded={open ? "true" : undefined}
-            aria-haspopup="true"
-            onClick={handleClick}
-          >
-            <KeyboardArrowDownIcon sx={{ color: "black" }} />
-          </IconButton>
-          <Menu
-            id="fade-menu"
-            MenuListProps={{
-              "aria-labelledby": "fade-button",
-            }}
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-            TransitionComponent={Fade}
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "left",
-            }}
-            sx={{
-              ".MuiPopover-paper": {
-                border: "1px solid rgba(255, 255, 255, 0.4)",
-                px: 2,
-              },
-            }}
-          >
-            <Stack direction="row" alignItems="center">
+        {!isLoggedIn ? (
+          <Link href="/auth/login" passHref>
+            <Button
+              color="inherit"
+              sx={{ textTransform: "none", color: "#000000", fontWeight: 600 }}
+            >
+              Login
+            </Button>
+          </Link>
+        ) : (
+          <>
+            <Box
+              display="flex"
+              flexDirection="row"
+              alignItems="center"
+              justifyContent="flex-end"
+              sx={{ pl: 2 }}
+            >
               <Avatar sx={{ width: 30, height: 30 }} sizes="small">
                 {name.charAt(0)}
               </Avatar>
-              <MenuItem sx={{ fontWeight: "bold" }}>{name}</MenuItem>
-            </Stack>
-            <Divider
-              orientation="horizontal"
-              sx={{ backgroundColor: "#EEFAF4", mt: 1, mb: 1 }}
-            />
-            <Stack direction="row" alignItems="center">
-              <LogoutIcon />
-              <MenuItem sx={{ color: "#646464" }}>Log Out</MenuItem>
-            </Stack>
-          </Menu>
-        </Box>
+              <IconButton
+                aria-label="more"
+                id="long-button"
+                aria-controls={open ? "long-menu" : undefined}
+                aria-expanded={open ? "true" : undefined}
+                aria-haspopup="true"
+                onClick={handleClick}
+              >
+                <KeyboardArrowDownIcon sx={{ color: "black" }} />
+              </IconButton>
+              <Menu
+                id="fade-menu"
+                MenuListProps={{
+                  "aria-labelledby": "fade-button",
+                }}
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                TransitionComponent={Fade}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "left",
+                }}
+                sx={{
+                  ".MuiPopover-paper": {
+                    border: "1px solid rgba(255, 255, 255, 0.4);",
+                    px: 2,
+                  },
+                }}
+              >
+                <Stack direction="row" alignItems="center">
+                  <Avatar sx={{ width: 30, height: 30 }} sizes="small">
+                    {name.charAt(0)}
+                  </Avatar>
+                  <MenuItem sx={{ fontWeight: "bold" }}>{name}</MenuItem>
+                </Stack>
+
+                <Divider
+                  orientation="horizontal"
+                  sx={{ backgroundColor: "#EEFAF4", mt: 1, mb: 1 }}
+                />
+                <Stack direction="row" alignItems="center">
+                  <LogoutIcon />
+                  <MenuItem sx={{ color: "#646464" }} onClick={handleLogout}>
+                    Log Out
+                  </MenuItem>
+                </Stack>
+              </Menu>
+            </Box>
+          </>
+        )}
       </Toolbar>
     </AppBar>
   );

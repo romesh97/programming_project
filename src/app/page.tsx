@@ -31,6 +31,7 @@ export default function Home() {
             profileImage: pet.profileImage,
             title: pet.title,
             weight: pet.weight,
+            
           }));
           setPets(transformedData);
         } else {
@@ -65,6 +66,7 @@ export default function Home() {
                   profileImage={item.profileImage}
                   title={item.title}
                   weight={item.weight}
+                  sx={{ my: 5 }}
                 />
               </Grid>
             ))}
