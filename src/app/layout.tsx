@@ -6,6 +6,7 @@ import CustomTheme from "./themes/custom";
 import { Box, CssBaseline } from "@mui/material";
 import Footer from "./components/common/footer/page";
 import Header from "./components/common/header/page";
+import { AuthProvider } from "./context/authContext";
 
 //snackbar
 // import { SnackbarProvider } from "notistack";
@@ -37,6 +38,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <ThemeProvider theme={CustomTheme}>
           {/* <SnackbarProvider maxSnack={3}> */}
+          <AuthProvider>
             <Suspense fallback={<div>Loading...</div>}>
               <Box component="div" className="container">
                 <CssBaseline />
@@ -45,6 +47,7 @@ export default function RootLayout({
               </Box>
               <Footer />
             </Suspense>
+            </AuthProvider>
           {/* </SnackbarProvider> */}
         </ThemeProvider>
       </body>
