@@ -25,3 +25,10 @@ export const getAllPosts = async () => {
   return response.data;
 };
 
+export const getAllPostsByUserId = async (userId: string) => {
+  const response = await axios.get(
+    `http://127.0.0.1:5001/emerald-eon-438919-g7/us-central1/api//getPosts/${userId}`
+  );
+  return response.data;
+};
+
