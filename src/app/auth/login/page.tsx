@@ -12,8 +12,10 @@ import {
 import Link from "next/link";
 import { login } from "@/app/services/authService";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/app/context/authContext";
 
 const Login: React.FC = () => {
+  const { setAuthData } = useAuth();
   const router = useRouter();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -26,12 +28,19 @@ const Login: React.FC = () => {
     setError(null);
     // setMessage(null);
     try {
-      await login({
+      const result = await login({
         email: email,
         password: password,
       });
 
-      router.push("/dashboard");
+      if (result.data.error) {
+        setError(result.data.error);
+      } else {
+        const { user, token } = result.data.data;
+        console.log("dataa", user, token);
+        setAuthData(user, token);
+        router.push("/profile");
+      }
     } catch (err: any) {
       if (
         err.response.data.details === "Firebase: Error (auth/invalid-email)."
