@@ -6,32 +6,41 @@ import DogIcon from "../../../../../public/icons/dog_icon";
 
 // -----------------TODO----------------
 // Add next Image component
-interface InfoCardProps {
+export interface PetCardProps {
+  id?: string;
+  title: string;
   name: string;
-  text: string;
-  image?: string;
+  shortDescription: string;
+  profileImage: string;
+  weight: string;
   sx?: SxProps;
-  months: string;
+  age: string;
   gender: string;
-  city: string;
+  location: string;
   breed: string;
+  onEdit?: () => void; // Add onEdit prop
+  onDelete?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
 export default function PetCard({
+  id,
+  title,
   name,
-  text,
-  image,
+  shortDescription,
+  profileImage,
   sx,
-  months,
+  age,
   gender,
-  city,
+  location,
   breed,
-}: InfoCardProps) {
+  onEdit,
+  onDelete,
+}: PetCardProps) {
   return (
     <Card
       sx={{
-        // boxShadow:
-        //   "0px 0.5px 1.75px rgba(0, 0, 0, 0.039), 0px 1.85px 6.25px rgba(0, 0, 0, 0.19);",
+        boxShadow:
+          "0px 0.5px 1.75px rgba(0, 0, 0, 0.039), 0px 1.85px 6.25px rgba(0, 0, 0, 0.19);",
         padding: 2,
         alignItems: "center",
         borderRadius: 2,
@@ -41,16 +50,19 @@ export default function PetCard({
       <Stack direction="row" alignItems="center" spacing={2}>
         <Box
           component="img"
-          src={image}
+          src={profileImage}
           alt={name}
           sx={{ width: 100, height: 100, borderRadius: "20%" }}
         />
         <Box>
-          <Typography sx={{ fontSize: "30px", fontWeight: 600 }}>
+          <Typography sx={{ fontSize: "20px", fontWeight: 600 }}>
+            {title}
+          </Typography>
+          <Typography sx={{ fontSize: "15px", fontWeight: 600 }}>
             {name}
           </Typography>
           <Typography sx={{ fontSize: "13px", color: "#808080" }}>
-            {text}
+            {shortDescription}
           </Typography>
 
           <Stack direction="row" alignItems="center" spacing={2} mt={2}>
@@ -60,10 +72,10 @@ export default function PetCard({
             </Stack>
             <Stack direction="column" alignItems="flex-start" spacing={1}>
               <Typography sx={{ fontSize: "13px", color: "#808080" }}>
-                {months} Months
+                {age} Years
               </Typography>
               <Typography sx={{ fontSize: "13px", color: "#808080" }}>
-                {city}
+                {location}
               </Typography>
             </Stack>
             <Stack direction="column" alignItems="center" spacing={1}>
