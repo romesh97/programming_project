@@ -36,8 +36,8 @@ const TopSection: React.FC = () => {
           background: "#3D3D3D",
           width: "100%",
           color: "rgba(255, 255, 255, 0.60);",
-          px: { sm: "200px", xs: "80px" },
-          py: { sm: "150px", xs: "40px" },
+          px: { sm: "80px", xs: "40px" },
+          py: { sm: "75px", xs: "20px" },
         }}
       >
         <Typography variant="body1" align="center" letterSpacing="0.6px">
