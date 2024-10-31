@@ -53,15 +53,10 @@ export default function Dashboard() {
       }
     };
 
-    // Only fetch pets if user is logged in and defined
     if (isLoggedIn && user) {
       fetchPets();
     }
   }, [user, isLoggedIn]);
-
-  // if (isLoggedIn && user) {
-  //   fetchPets();
-  // }
 
   return (
     <Container sx={{ px: 5, py: 2 }}>
@@ -102,6 +97,7 @@ export default function Dashboard() {
                 title={item.title}
                 weight={item.weight}
                 sx={{ my: 5 }}
+                onEdit={() => router.push(`/profile/posts/${item.id}`)}
               />
             </Grid>
           ))}
