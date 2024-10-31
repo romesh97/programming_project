@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { getAllPostsByUserId } from "../services/authService";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../context/authContext";
+import ProfilePetCard from "../components/common/profile-petcard/page";
 
 export default function Dashboard() {
   const router = useRouter();
@@ -89,7 +90,7 @@ export default function Dashboard() {
         <Grid container spacing={5}>
           {posts.slice(0, 3).map((item) => (
             <Grid item xs={12} sm={6} md={4} key={item.id}>
-              <PetCard
+              <ProfilePetCard
                 id={item.id}
                 name={item.name}
                 shortDescription={item.shortDescription}
