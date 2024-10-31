@@ -160,15 +160,15 @@ const CreatePost: React.FC = () => {
             Upload Profile Image
             <input type="file" hidden onChange={handleFileChange} />
           </Button>
-          {/* Display image preview if available */}
+
           {imagePreview && (
             <Box mt={2}>
               <Typography variant="h6">Image Preview:</Typography>
               <Image
                 src={imagePreview}
                 alt="Image Preview"
-                width="200" // Width is set
-                height="200" // Set height to auto or a specific value
+                width="200"
+                height="200"
                 style={{ maxHeight: "200px" }}
               />
             </Box>
