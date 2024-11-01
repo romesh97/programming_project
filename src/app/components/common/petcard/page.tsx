@@ -56,6 +56,7 @@ export default function PetCard({
         padding: 2,
         alignItems: "center",
         borderRadius: 2,
+        position: "relative",
         ...sx,
       }}
     >
