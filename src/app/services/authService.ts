@@ -39,3 +39,16 @@ export const createPost = async (petData: any) => {
   );
   return response.data;
 };
+
+export const deletePostById = async (postId: string) => {
+  try {
+    const response = await axios.delete(
+      `http://127.0.0.1:5001/emerald-eon-438919-g7/us-central1/api/deletePost/${postId}`
+    );
+    console.log(response.data.message);
+    return response.data.message;
+  } catch (error: any) {
+    console.error("Error deleting post:", error);
+    throw new Error(error.response?.data?.message || "Failed to delete post");
+  }
+};
