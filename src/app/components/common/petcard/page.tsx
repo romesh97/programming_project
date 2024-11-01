@@ -1,8 +1,18 @@
-import { Box, Card, Paper, Stack, SxProps, Typography } from "@mui/material";
+import {
+  Box,
+  Card,
+  IconButton,
+  Paper,
+  Stack,
+  SxProps,
+  Typography,
+} from "@mui/material";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import FemaleIcon from "@mui/icons-material/Female";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import DogIcon from "../../../../../public/icons/dog_icon";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 // -----------------TODO----------------
 // Add next Image component
@@ -18,7 +28,8 @@ export interface PetCardProps {
   gender: string;
   location: string;
   breed: string;
-  onEdit?: () => void; // Add onEdit prop
+  profileView?: boolean;
+  onEdit?: () => void;
   onDelete?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
@@ -33,6 +44,7 @@ export default function PetCard({
   gender,
   location,
   breed,
+  profileView = false,
   onEdit,
   onDelete,
 }: PetCardProps) {
@@ -47,6 +59,16 @@ export default function PetCard({
         ...sx,
       }}
     >
+      {profileView && (
+        <Box sx={{ position: "absolute", top: 10, right: 10 }}>
+          <IconButton onClick={onEdit} size="small">
+            <EditIcon fontSize="small" />
+          </IconButton>
+          <IconButton onClick={onDelete} size="small">
+            <DeleteIcon fontSize="small" />
+          </IconButton>
+        </Box>
+      )}
       <Stack direction="row" alignItems="center" spacing={2}>
         <Box
           component="img"
