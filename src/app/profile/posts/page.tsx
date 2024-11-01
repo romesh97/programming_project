@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, ChangeEvent, FormEvent } from "react";
+import { useRouter } from "next/navigation";
 import { TextField, Button, Container, Typography, Box } from "@mui/material";
 import axios from "axios";
 import { useAuth } from "@/app/context/authContext";
@@ -19,6 +20,7 @@ interface FormData {
 
 const CreatePost: React.FC = () => {
   const { token } = useAuth();
+  const router = useRouter();
   const [formData, setFormData] = useState<FormData>({
     name: "",
     age: "",
@@ -70,6 +72,7 @@ const CreatePost: React.FC = () => {
         }
       );
       alert(response.data.message);
+      router.push("/profile");
     } catch (error) {
       console.error("Error creating post:", error);
       alert("Failed to create post");

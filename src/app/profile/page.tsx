@@ -7,12 +7,17 @@ import { useEffect, useState } from "react";
 import { getAllPostsByUserId } from "../services/authService";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../context/authContext";
+import { deletePostById } from "../services/authService";
+import axios from "axios";
 
 export default function Dashboard() {
   const router = useRouter();
+  const { token } = useAuth();
+  const [postId, setPostId] = useState<string>("");
   const { user, isLoggedIn } = useAuth();
   const [posts, setPosts] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [deletePost, setDeletePost] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchPets = async () => {
@@ -57,11 +62,23 @@ export default function Dashboard() {
     }
   }, [user, isLoggedIn]);
 
+  const handleDelete = async (postId: string) => {
+    try {
+      const message = await deletePostById(postId);
+      alert(message);
+
+      // Remove the deleted post from the local state
+      setPosts((prevPosts) => prevPosts.filter((post) => post.id !== postId));
+    } catch (error: any) {
+      alert(error.message);
+    }
+  };
+
   return (
     <Container sx={{ px: 5, py: 2 }}>
       <Stack direction="row" alignItems="center" justifyContent="space-between">
         <Typography variant="h4" fontWeight="bold">
-          MY POSTS{isLoggedIn.toString()}
+          MY POSTS {isLoggedIn.toString()}
         </Typography>
         <Button
           sx={{
@@ -98,6 +115,7 @@ export default function Dashboard() {
                 sx={{ my: 5 }}
                 onEdit={() => router.push(`/profile/posts/${item.id}`)}
                 profileView={true}
+                onDelete={() => handleDelete(item.id)}
               />
             </Grid>
           ))}
