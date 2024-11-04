@@ -6,35 +6,35 @@ export const register = async (data: {
   password: string;
 }) => {
   return axios.post(
-    `http://127.0.0.1:5001/emerald-eon-438919-g7/us-central1/api/register`,
+    `https://us-central1-emerald-eon-438919-g7.cloudfunctions.net/api/register`,
     data
   );
 };
 
 export const login = async (data: { email: string; password: string }) => {
   return axios.post(
-    `http://127.0.0.1:5001/emerald-eon-438919-g7/us-central1/api/login`,
+    `https://us-central1-emerald-eon-438919-g7.cloudfunctions.net/api/login`,
     data
   );
 };
 
 export const getAllPosts = async () => {
   const response = await axios.get(
-    `http://127.0.0.1:5001/emerald-eon-438919-g7/us-central1/api/getAllPosts`
+    `https://us-central1-emerald-eon-438919-g7.cloudfunctions.net/api/getAllPosts`
   );
   return response.data;
 };
 
 export const getAllPostsByUserId = async (userId: string) => {
   const response = await axios.get(
-    `http://127.0.0.1:5001/emerald-eon-438919-g7/us-central1/api/getPosts/${userId}`
+    `https://us-central1-emerald-eon-438919-g7.cloudfunctions.net/api/getPosts/${userId}`
   );
   return response.data;
 };
 
 export const createPost = async (petData: any) => {
   const response = await axios.post(
-    `http://127.0.0.1:5001/emerald-eon-438919-g7/us-central1/api/createPost`,
+    `https://us-central1-emerald-eon-438919-g7.cloudfunctions.net/api/createPost`,
     petData
   );
   return response.data;
@@ -43,7 +43,7 @@ export const createPost = async (petData: any) => {
 export const deletePostById = async (postId: string) => {
   try {
     const response = await axios.delete(
-      `http://127.0.0.1:5001/emerald-eon-438919-g7/us-central1/api/deletePost/${postId}`
+      `https://us-central1-emerald-eon-438919-g7.cloudfunctions.net/api/deletePost/${postId}`
     );
     console.log(response.data.message);
     return response.data.message;

@@ -55,7 +55,7 @@ const EditPost: React.FC = () => {
 
             try {
                 const response = await axios.get(
-                    `http://127.0.0.1:5001/emerald-eon-438919-g7/us-central1/api/getPostById/${postId}`,
+                    `https://us-central1-emerald-eon-438919-g7.cloudfunctions.net/api/getPostById/${postId}`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
@@ -116,7 +116,7 @@ const EditPost: React.FC = () => {
 
         try {
             const response = await axios.put(
-                `http://127.0.0.1:5001/emerald-eon-438919-g7/us-central1/api/updatePost/${postId}`,
+                `https://us-central1-emerald-eon-438919-g7.cloudfunctions.net/api/updatePost/${postId}`,
                 form,
                 {
                     headers: {
