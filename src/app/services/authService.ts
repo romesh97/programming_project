@@ -13,12 +13,7 @@ export const register = async (data: {
 
 export const login = async (data: { email: string; password: string }) => {
   return axios.post(
-<<<<<<< HEAD
     `https://us-central1-emerald-eon-438919-g7.cloudfunctions.net/api/login`,
-=======
-    `http://127.0.0.1:5001/emerald-eon-438919-g7/us-central1/api/login`,
-    // `https://us-central1-emerald-eon-438919-g7.cloudfunctions.net/api/login`,
->>>>>>> 603559243827d0f8d3879ecee671eccedc731cab
     data
   );
 };
