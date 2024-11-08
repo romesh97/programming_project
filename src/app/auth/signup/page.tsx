@@ -7,7 +7,6 @@ import {
   Container,
   Box,
   CircularProgress,
-  
 } from "@mui/material";
 import Link from "next/link";
 import { register } from "@/app/services/authService";
@@ -32,15 +31,14 @@ const Register: React.FC = () => {
         firstName: name,
         password: password,
       });
-    
+
       router.push("/auth/login");
     } catch (err: any) {
       if (
         err.response.data.details ===
         "The email address is already in use by another account."
       ) {
-        setError("The email address is already in use by another account.")
-        // alert("The email address is already in use by another account.");
+        setError("The email address is already in use by another account.");
       } else {
         alert("Registration error");
       }
@@ -58,12 +56,12 @@ const Register: React.FC = () => {
         </Typography>
         <Box component="form" onSubmit={handleRegister}>
           <TextField
+            type="text"
             label="Name"
             variant="outlined"
             fullWidth
             margin="normal"
             value={name}
-            autoComplete="name"
             onChange={(e) => setName(e.target.value)}
             required
           />
@@ -74,7 +72,6 @@ const Register: React.FC = () => {
             fullWidth
             margin="normal"
             value={email}
-            autoComplete="email"
             onChange={(e) => setEmail(e.target.value)}
             required
             // helperText="Please enter a valid email address"
