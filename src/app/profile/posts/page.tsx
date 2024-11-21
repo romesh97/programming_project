@@ -93,7 +93,7 @@ const CreatePost: React.FC = () => {
         <Typography variant="h4" gutterBottom>
           Create Pet Post
         </Typography>
-        <form onSubmit={handleSubmit}>
+        <Box component="form" onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -180,7 +180,7 @@ const CreatePost: React.FC = () => {
             variant="contained"
             component="label"
             fullWidth
-            sx={{ my: 2, backgroundColor: "#F0801A !important" }}
+            sx={{ my: 2 }}
           >
             Upload Profile Image
             <input type="file" hidden onChange={handleFileChange} />
@@ -202,11 +202,11 @@ const CreatePost: React.FC = () => {
             variant="contained"
             type="submit"
             fullWidth
-            sx={{ backgroundColor: "#F0801A !important", mb: 4 }}
+            sx={{ mt: 2, mb: 4 }}
           >
             Create Post
           </Button>
-        </form>
+        </Box>
       </Box>
     </Container>
   );

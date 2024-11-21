@@ -134,7 +134,7 @@ const EditPost: React.FC = () => {
         }
       );
       alert(response.data.message);
-      window.location.href = "/profile/posts";
+      window.location.href = "/profile";
     } catch (error) {
       console.error("Error updating post:", error);
       alert("Failed to update post");
@@ -145,7 +145,9 @@ const EditPost: React.FC = () => {
 
   return (
     <Container maxWidth="sm">
-      <Typography variant="h4">Edit Post</Typography>
+      <Typography variant="h4" mt={4}>
+        Edit Post
+      </Typography>
       <Box component="form" onSubmit={handleUpdatePost}>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
@@ -265,7 +267,12 @@ const EditPost: React.FC = () => {
             </Box>
           </Box>
         )}
-        <Button variant="contained" type="submit" fullWidth sx={{ mt: 2 }}>
+        <Button
+          variant="contained"
+          type="submit"
+          fullWidth
+          sx={{ mt: 2, mb: 4 }}
+        >
           Update Post
         </Button>
       </Box>
