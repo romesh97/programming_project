@@ -2,7 +2,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import axios from "axios";
-import { Box, Button, Container, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Grid,
+  MenuItem,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { useAuth } from "@/app/context/authContext";
 import Image from "next/image";
 
@@ -139,38 +147,53 @@ const EditPost: React.FC = () => {
     <Container maxWidth="sm">
       <Typography variant="h4">Edit Post</Typography>
       <Box component="form" onSubmit={handleUpdatePost}>
-        <TextField
-          label="Name"
-          name="name"
-          fullWidth
-          margin="normal"
-          value={formData.name}
-          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-        />
-        <TextField
-          label="Age"
-          name="age"
-          fullWidth
-          margin="normal"
-          value={formData.age}
-          onChange={(e) => setFormData({ ...formData, age: e.target.value })}
-        />
-        <TextField
-          label="Weight"
-          name="weight"
-          fullWidth
-          margin="normal"
-          value={formData.weight}
-          onChange={(e) => setFormData({ ...formData, weight: e.target.value })}
-        />
-        <TextField
-          label="Title"
-          name="title"
-          fullWidth
-          margin="normal"
-          value={formData.title}
-          onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-        />
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              label="Name"
+              name="name"
+              fullWidth
+              margin="normal"
+              value={formData.name}
+              onChange={(e) =>
+                setFormData({ ...formData, name: e.target.value })
+              }
+            />
+            <TextField
+              label="Age"
+              name="age"
+              fullWidth
+              margin="normal"
+              value={formData.age}
+              onChange={(e) =>
+                setFormData({ ...formData, age: e.target.value })
+              }
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              label="Weight"
+              name="weight"
+              fullWidth
+              margin="normal"
+              value={formData.weight}
+              onChange={(e) =>
+                setFormData({ ...formData, weight: e.target.value })
+              }
+            />
+            <TextField
+              label="Title"
+              name="title"
+              fullWidth
+              margin="normal"
+              value={formData.title}
+              onChange={(e) =>
+                setFormData({ ...formData, title: e.target.value })
+              }
+            />
+          </Grid>
+        </Grid>
+
         <TextField
           label="Location"
           name="location"
@@ -182,13 +205,16 @@ const EditPost: React.FC = () => {
           }
         />
         <TextField
+          select
           label="Gender"
-          name="gender"
-          fullWidth
           margin="normal"
+          fullWidth
           value={formData.gender}
           onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
-        />
+        >
+          <MenuItem value="Male">Male</MenuItem>
+          <MenuItem value="Female">Female</MenuItem>
+        </TextField>
         <TextField
           label="Description"
           name="description"

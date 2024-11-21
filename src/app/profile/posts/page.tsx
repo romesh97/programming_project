@@ -1,7 +1,15 @@
 "use client";
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import { TextField, Button, Container, Typography, Box } from "@mui/material";
+import {
+  TextField,
+  Button,
+  Container,
+  Typography,
+  Box,
+  Grid,
+  MenuItem,
+} from "@mui/material";
 import axios from "axios";
 import { useAuth } from "@/app/context/authContext";
 import Image from "next/image";
@@ -86,40 +94,48 @@ const CreatePost: React.FC = () => {
           Create Pet Post
         </Typography>
         <form onSubmit={handleSubmit}>
-          <TextField
-            label="Name"
-            name="name"
-            fullWidth
-            margin="normal"
-            onChange={handleChange}
-            value={formData.name}
-          />
-          <TextField
-            label="Age"
-            name="age"
-            type="number"
-            fullWidth
-            margin="normal"
-            onChange={handleChange}
-            value={formData.age}
-          />
-          <TextField
-            label="Weight"
-            name="weight"
-            type="number"
-            fullWidth
-            margin="normal"
-            onChange={handleChange}
-            value={formData.weight}
-          />
-          <TextField
-            label="Title"
-            name="title"
-            fullWidth
-            margin="normal"
-            onChange={handleChange}
-            value={formData.title}
-          />
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="Name"
+                name="name"
+                fullWidth
+                margin="normal"
+                onChange={handleChange}
+                value={formData.name}
+              />
+              <TextField
+                label="Age"
+                name="age"
+                type="number"
+                fullWidth
+                margin="normal"
+                onChange={handleChange}
+                value={formData.age}
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="Weight"
+                name="weight"
+                type="number"
+                fullWidth
+                margin="normal"
+                onChange={handleChange}
+                value={formData.weight}
+              />
+              <TextField
+                label="Title"
+                name="title"
+                fullWidth
+                margin="normal"
+                onChange={handleChange}
+                value={formData.title}
+              />
+            </Grid>
+          </Grid>
+
           <TextField
             label="Location"
             name="location"
@@ -128,14 +144,20 @@ const CreatePost: React.FC = () => {
             onChange={handleChange}
             value={formData.location}
           />
+
           <TextField
+            select
             label="Gender"
-            name="gender"
-            fullWidth
             margin="normal"
-            onChange={handleChange}
+            fullWidth
             value={formData.gender}
-          />
+            onChange={(e) =>
+              setFormData({ ...formData, gender: e.target.value })
+            }
+          >
+            <MenuItem value="Male">Male</MenuItem>
+            <MenuItem value="Female">Female</MenuItem>
+          </TextField>
           <TextField
             label="Description"
             name="description"
@@ -158,7 +180,7 @@ const CreatePost: React.FC = () => {
             variant="contained"
             component="label"
             fullWidth
-            sx={{ my: 2 }}
+            sx={{ my: 2, backgroundColor: "#F0801A !important" }}
           >
             Upload Profile Image
             <input type="file" hidden onChange={handleFileChange} />
@@ -176,7 +198,12 @@ const CreatePost: React.FC = () => {
               />
             </Box>
           )}
-          <Button variant="contained" color="primary" type="submit" fullWidth>
+          <Button
+            variant="contained"
+            type="submit"
+            fullWidth
+            sx={{ backgroundColor: "#F0801A !important", mb: 4 }}
+          >
             Create Post
           </Button>
         </form>
