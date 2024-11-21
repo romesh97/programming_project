@@ -76,7 +76,12 @@ export default function Dashboard() {
 
   return (
     <Container sx={{ px: 5, py: 2 }}>
-      <Stack direction="row" alignItems="center" justifyContent="space-between">
+      <Stack
+        direction="row"
+        alignItems="center"
+        justifyContent="space-between"
+        mb={4}
+      >
         <Typography variant="h4" fontWeight="bold">
           MY POSTS {isLoggedIn.toString()}
         </Typography>
@@ -112,7 +117,6 @@ export default function Dashboard() {
                 profileImage={item.profileImage}
                 title={item.title}
                 weight={item.weight}
-                sx={{ my: 5 }}
                 onEdit={() => router.push(`/profile/posts/${item.id}`)}
                 profileView={true}
                 onDelete={() => handleDelete(item.id)}

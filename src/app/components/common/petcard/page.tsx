@@ -61,7 +61,7 @@ export default function PetCard({
       }}
     >
       {profileView && (
-        <Box sx={{ position: "absolute", top: 10, right: 10 }}>
+        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
           <IconButton onClick={onEdit} size="small">
             <EditIcon fontSize="small" />
           </IconButton>
