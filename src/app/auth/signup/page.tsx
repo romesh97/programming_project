@@ -11,9 +11,11 @@ import {
 import Link from "next/link";
 import { register } from "@/app/services/authService";
 import { useRouter } from "next/navigation";
+import { useSnackbar } from "notistack";
 
 const Register: React.FC = () => {
   const router = useRouter();
+  const { enqueueSnackbar } = useSnackbar();
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -33,14 +35,24 @@ const Register: React.FC = () => {
       });
 
       router.push("/auth/login");
+      enqueueSnackbar(`Registration Successful`, {
+        variant: "success",
+        anchorOrigin: { horizontal: "center", vertical: "top" },
+      });
     } catch (err: any) {
       if (
         err.response.data.details ===
         "The email address is already in use by another account."
       ) {
-        setError("The email address is already in use by another account.");
+        enqueueSnackbar(`The email address is already in use`, {
+          variant: "error",
+          anchorOrigin: { horizontal: "center", vertical: "top" },
+        });
       } else {
-        alert("Registration error");
+        enqueueSnackbar(`Registration error`, {
+          variant: "error",
+          anchorOrigin: { horizontal: "center", vertical: "top" },
+        });
       }
       console.error("Registration error:", err);
     } finally {

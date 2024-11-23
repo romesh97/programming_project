@@ -13,10 +13,12 @@ import Link from "next/link";
 import { login } from "@/app/services/authService";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/app/context/authContext";
+import { useSnackbar } from "notistack";
 
 const Login: React.FC = () => {
   const { setAuthData } = useAuth();
   const router = useRouter();
+  const { enqueueSnackbar } = useSnackbar();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
@@ -41,19 +43,31 @@ const Login: React.FC = () => {
         setAuthData(user, token);
         router.push("/profile");
       }
+      enqueueSnackbar(`Login Successful`, {
+        variant: "success",
+        anchorOrigin: { horizontal: "center", vertical: "top" },
+      });
     } catch (err: any) {
       if (
         err.response.data.details === "Firebase: Error (auth/invalid-email)."
       ) {
-        setError("Invalid email address");
-        // alert("The email address is already in use by another account.");
+        enqueueSnackbar(`Invalid email address`, {
+          variant: "error",
+          anchorOrigin: { horizontal: "center", vertical: "top" },
+        });
       } else if (
         err.response.data.details ===
         "Firebase: Error (auth/invalid-credential)."
       ) {
-        setError("Invalid Credentials");
+        enqueueSnackbar(`Invalid Credentials`, {
+          variant: "error",
+          anchorOrigin: { horizontal: "center", vertical: "top" },
+        });
       } else {
-        setError("An unexpected error occurred");
+        enqueueSnackbar(`An unexpected error occurred`, {
+          variant: "error",
+          anchorOrigin: { horizontal: "center", vertical: "top" },
+        });
       }
       console.error("Login error:", err);
     } finally {
