@@ -1,55 +1,41 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Inter } from "next/font/google";
+import { Metadata } from "next";
 import "./globals.css";
-import { ThemeProvider } from "@mui/material/styles";
-import CustomTheme from "./themes/custom";
-import { Box, CssBaseline } from "@mui/material";
-import Footer from "./components/common/footer/page";
-import Header from "./components/common/header/page";
-import { AuthProvider } from "./context/authContext";
+import Providers from "./components/providers";
 
 //snackbar
 // import { SnackbarProvider } from "notistack";
-import { Suspense } from "react";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+// export const metadata: Metadata = {
+//   title: "pet-site",
+//   description: "Dog Crossbreed Platform",
+
+// };
 
 export const metadata: Metadata = {
-  title: "pet-site",
-  description: "Dog Crossbreed Platform",
+  title: "Pet Crossbreed Platform",
+  description: "Pet Meetup Platform",
+  icons: {
+    // icon: "/shield-dog-solid.svg",
+  },
 };
+
+const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
-}: Readonly<{
+  session,
+}: {
   children: React.ReactNode;
-}>) {
+  session: any;
+}) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <ThemeProvider theme={CustomTheme}>
-          {/* <SnackbarProvider maxSnack={3}> */}
-          <AuthProvider>
-            <Suspense fallback={<div>Loading...</div>}>
-              <Box component="div" className="container">
-                <CssBaseline />
-                <Header />
-                {children}
-              </Box>
-              <Footer />
-            </Suspense>
-            </AuthProvider>
-          {/* </SnackbarProvider> */}
-        </ThemeProvider>
+      <head>
+        <link rel="icon" href="/shield-dog-solid.svg" />
+      </head>
+      <body className={inter.className}>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
