@@ -49,9 +49,9 @@ describe("create-pet-post spec", () => {
         name: "gender",
         selector: '[name="gender"]',
         type: "select",
-        checkVisibility: ($el: any) => {
+        checkVisibility: ($item: any) => {
           // For MUI Select, check the parent or label
-          cy.wrap($el).parent().should("be.visible").and("contain", "Gender");
+          cy.wrap($item).parent().should("be.visible").and("contain", "Gender");
         },
       },
       {
