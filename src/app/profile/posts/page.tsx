@@ -155,6 +155,7 @@ const CreatePost: React.FC = () => {
           <TextField
             required
             select
+            name="gender"
             label="Gender"
             margin="normal"
             fullWidth
