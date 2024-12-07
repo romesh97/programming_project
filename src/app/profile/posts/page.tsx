@@ -97,6 +97,7 @@ const CreatePost: React.FC = () => {
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
+                required
                 label="Name"
                 name="name"
                 fullWidth
@@ -106,6 +107,7 @@ const CreatePost: React.FC = () => {
                 inputProps={{ maxLength: 12 }}
               />
               <TextField
+                required
                 label="Age"
                 name="age"
                 type="number"
@@ -118,6 +120,7 @@ const CreatePost: React.FC = () => {
 
             <Grid item xs={12} sm={6}>
               <TextField
+                required
                 label="Weight"
                 name="weight"
                 type="number"
@@ -127,6 +130,7 @@ const CreatePost: React.FC = () => {
                 value={formData.weight}
               />
               <TextField
+                required
                 label="Title"
                 name="title"
                 fullWidth
@@ -139,6 +143,7 @@ const CreatePost: React.FC = () => {
           </Grid>
 
           <TextField
+            required
             label="Location"
             name="location"
             fullWidth
@@ -148,6 +153,7 @@ const CreatePost: React.FC = () => {
           />
 
           <TextField
+            required
             select
             label="Gender"
             margin="normal"
@@ -161,6 +167,7 @@ const CreatePost: React.FC = () => {
             <MenuItem value="Female">Female</MenuItem>
           </TextField>
           <TextField
+            required
             label="Description"
             name="description"
             multiline
@@ -171,6 +178,7 @@ const CreatePost: React.FC = () => {
             value={formData.description}
           />
           <TextField
+            required
             label="Breed"
             name="breed"
             fullWidth

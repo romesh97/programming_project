@@ -152,6 +152,7 @@ const EditPost: React.FC = () => {
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
             <TextField
+              required
               label="Name"
               name="name"
               fullWidth
@@ -163,6 +164,7 @@ const EditPost: React.FC = () => {
               inputProps={{ maxLength: 12 }}
             />
             <TextField
+              required
               label="Age"
               name="age"
               fullWidth
@@ -176,6 +178,7 @@ const EditPost: React.FC = () => {
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
+              required
               label="Weight"
               name="weight"
               fullWidth
@@ -186,6 +189,7 @@ const EditPost: React.FC = () => {
               }
             />
             <TextField
+              required
               label="Title"
               name="title"
               fullWidth
@@ -200,6 +204,7 @@ const EditPost: React.FC = () => {
         </Grid>
 
         <TextField
+          required
           label="Location"
           name="location"
           fullWidth
@@ -210,6 +215,7 @@ const EditPost: React.FC = () => {
           }
         />
         <TextField
+          required
           select
           label="Gender"
           margin="normal"
@@ -221,6 +227,7 @@ const EditPost: React.FC = () => {
           <MenuItem value="Female">Female</MenuItem>
         </TextField>
         <TextField
+          required
           label="Description"
           name="description"
           multiline
@@ -233,6 +240,7 @@ const EditPost: React.FC = () => {
           }
         />
         <TextField
+          required
           label="Breed"
           name="breed"
           fullWidth
