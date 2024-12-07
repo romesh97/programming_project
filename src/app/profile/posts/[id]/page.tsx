@@ -160,6 +160,7 @@ const EditPost: React.FC = () => {
               onChange={(e) =>
                 setFormData({ ...formData, name: e.target.value })
               }
+              inputProps={{ maxLength: 12 }}
             />
             <TextField
               label="Age"
@@ -192,6 +193,7 @@ const EditPost: React.FC = () => {
               onChange={(e) =>
                 setFormData({ ...formData, title: e.target.value })
               }
+              inputProps={{ maxLength: 12 }}
             />
           </Grid>
         </Grid>

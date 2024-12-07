@@ -103,6 +103,7 @@ const CreatePost: React.FC = () => {
                 margin="normal"
                 onChange={handleChange}
                 value={formData.name}
+                inputProps={{ maxLength: 12 }}
               />
               <TextField
                 label="Age"
@@ -132,6 +133,7 @@ const CreatePost: React.FC = () => {
                 margin="normal"
                 onChange={handleChange}
                 value={formData.title}
+                inputProps={{ maxLength: 12 }}
               />
             </Grid>
           </Grid>
