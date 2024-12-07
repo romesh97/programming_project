@@ -166,6 +166,7 @@ const EditPost: React.FC = () => {
               label="Age"
               name="age"
               fullWidth
+              type="number"
               margin="normal"
               value={formData.age}
               onChange={(e) =>
