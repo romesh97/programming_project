@@ -175,6 +175,7 @@ const CreatePost: React.FC = () => {
             margin="normal"
             onChange={handleChange}
             value={formData.contact}
+            inputProps={{ maxLength: 10 }}
           />
           <TextField
             required

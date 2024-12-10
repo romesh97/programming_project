@@ -237,6 +237,7 @@ const EditPost: React.FC = () => {
           onChange={(e) =>
             setFormData({ ...formData, contact: e.target.value })
           }
+          inputProps={{ maxLength: 10 }}
         />
         <TextField
           required
