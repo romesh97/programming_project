@@ -55,9 +55,9 @@ describe("create-pet-post spec", () => {
         },
       },
       {
-        name: "description",
-        selector: 'textarea[name="description"]',
-        type: "textarea",
+        name: "contact",
+        selector: '[name="contact"]',
+        type: "text",
       },
       {
         name: "breed",

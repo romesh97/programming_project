@@ -48,6 +48,8 @@ export default function PetCard({
   onEdit,
   onDelete,
 }: PetCardProps) {
+  const today = new Date();
+  const formattedDate = today.toLocaleDateString();
   return (
     <Card
       sx={{
@@ -115,7 +117,7 @@ export default function PetCard({
             </Stack>
           </Stack>
           <Typography sx={{ fontSize: "13px", color: "#C6C6C6" }} mt={2}>
-            2023-08-13
+            {formattedDate}
           </Typography>
         </Box>
       </Stack>
