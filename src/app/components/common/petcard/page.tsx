@@ -13,6 +13,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import DogIcon from "../../../../../public/icons/dog_icon";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import PhoneIcon from "@mui/icons-material/Phone";
 
 // -----------------TODO----------------
 // Add next Image component
@@ -48,8 +49,6 @@ export default function PetCard({
   onEdit,
   onDelete,
 }: PetCardProps) {
-  const today = new Date();
-  const formattedDate = today.toLocaleDateString();
   return (
     <Card
       sx={{
@@ -83,17 +82,12 @@ export default function PetCard({
           <Typography sx={{ fontSize: "20px", fontWeight: 600 }}>
             {title}
           </Typography>
-          <Typography sx={{ fontSize: "15px", fontWeight: 600 }}>
-            {name}
-          </Typography>
-          <Typography sx={{ fontSize: "13px", color: "#808080" }}>
-            {contact}
-          </Typography>
+          <Typography sx={{ fontSize: "15px" }}>{name}</Typography>
 
           <Stack direction="row" alignItems="center" spacing={2} mt={2}>
             <Stack direction="column" alignItems="center" spacing={1}>
-              <CalendarMonthIcon sx={{ height: 24, width: 24 }} />
-              <LocationOnIcon sx={{ height: 24, width: 24 }} />
+              <CalendarMonthIcon sx={{ height: 20, width: 20 }} />
+              <LocationOnIcon sx={{ height: 20, width: 20 }} />
             </Stack>
             <Stack direction="column" alignItems="flex-start" spacing={1}>
               <Typography sx={{ fontSize: "13px", color: "#808080" }}>
@@ -104,8 +98,8 @@ export default function PetCard({
               </Typography>
             </Stack>
             <Stack direction="column" alignItems="center" spacing={1}>
-              <FemaleIcon sx={{ height: 24, width: 24 }} />
-              <DogIcon sx={{ height: 24, width: 24 }} />
+              <FemaleIcon sx={{ height: 20, width: 20 }} />
+              <DogIcon sx={{ height: 20, width: 20 }} />
             </Stack>
             <Stack direction="column" alignItems="flex-start" spacing={1}>
               <Typography sx={{ fontSize: "13px", color: "#808080" }}>
@@ -116,9 +110,12 @@ export default function PetCard({
               </Typography>
             </Stack>
           </Stack>
-          <Typography sx={{ fontSize: "13px", color: "#C6C6C6" }} mt={2}>
-            {formattedDate}
-          </Typography>
+          <Stack direction="row" alignItems="center" spacing={2} mt={1}>
+            <PhoneIcon sx={{ height: 20, width: 20 }} />
+            <Typography sx={{ fontSize: "13px", color: "#808080" }}>
+              {contact}
+            </Typography>
+          </Stack>
         </Box>
       </Stack>
     </Card>

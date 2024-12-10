@@ -23,7 +23,7 @@ export default function Home() {
           const transformedData: PetCardProps[] = data.map((pet: any) => ({
             id: pet.id || pet._id || `${pet.name}-${pet.age}`,
             name: pet.name,
-            shortDescription: pet.shortDescription || pet.description,
+            contact: pet.contact,
             age: pet.age,
             gender: pet.gender,
             location: pet.location,
@@ -31,7 +31,6 @@ export default function Home() {
             profileImage: pet.profileImage,
             title: pet.title,
             weight: pet.weight,
-            
           }));
           setPets(transformedData);
         } else {
@@ -58,7 +57,7 @@ export default function Home() {
                 <PetCard
                   id={item.id}
                   name={item.name}
-                  shortDescription={item.shortDescription}
+                  contact={item.contact}
                   age={item.age}
                   gender={item.gender}
                   location={item.location}
