@@ -20,7 +20,7 @@ export interface PetCardProps {
   id?: string;
   title: string;
   name: string;
-  shortDescription: string;
+  contact: string;
   profileImage: string;
   weight: string;
   sx?: SxProps;
@@ -37,7 +37,7 @@ export default function PetCard({
   id,
   title,
   name,
-  shortDescription,
+  contact,
   profileImage,
   sx,
   age,
@@ -85,7 +85,7 @@ export default function PetCard({
             {name}
           </Typography>
           <Typography sx={{ fontSize: "13px", color: "#808080" }}>
-            {shortDescription}
+            {contact}
           </Typography>
 
           <Stack direction="row" alignItems="center" spacing={2} mt={2}>

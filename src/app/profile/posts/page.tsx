@@ -21,7 +21,7 @@ interface FormData {
   title: string;
   location: string;
   gender: string;
-  description: string;
+  contact: string;
   breed: string;
   profileImage: File | null;
 }
@@ -36,7 +36,7 @@ const CreatePost: React.FC = () => {
     title: "",
     location: "",
     gender: "",
-    description: "",
+    contact: "",
     breed: "",
     profileImage: null,
   });
@@ -169,14 +169,12 @@ const CreatePost: React.FC = () => {
           </TextField>
           <TextField
             required
-            label="Description"
-            name="description"
-            multiline
-            rows={4}
+            label="Contact Number"
+            name="contact"
             fullWidth
             margin="normal"
             onChange={handleChange}
-            value={formData.description}
+            value={formData.contact}
           />
           <TextField
             required

@@ -21,7 +21,7 @@ interface FormData {
   title: string;
   location: string;
   gender: string;
-  description: string;
+  contact: string;
   breed: string;
   profileImage: File | null;
 }
@@ -33,7 +33,7 @@ interface PostData {
   title: string;
   location: string;
   gender: string;
-  description: string;
+  contact: string;
   breed: string;
   profileImage: string | null;
 }
@@ -52,7 +52,7 @@ const EditPost: React.FC = () => {
     title: "",
     location: "",
     gender: "",
-    description: "",
+    contact: "",
     breed: "",
     profileImage: null,
   });
@@ -84,7 +84,7 @@ const EditPost: React.FC = () => {
           title: response.data.data.title,
           location: response.data.data.location,
           gender: response.data.data.gender,
-          description: response.data.data.description,
+          contact: response.data.data.contact,
           breed: response.data.data.breed,
           profileImage: null,
         });
@@ -228,15 +228,14 @@ const EditPost: React.FC = () => {
         </TextField>
         <TextField
           required
-          label="Description"
-          name="description"
-          multiline
+          label="Contact Number"
+          name="contact"
           rows={4}
           fullWidth
           margin="normal"
-          value={formData.description}
+          value={formData.contact}
           onChange={(e) =>
-            setFormData({ ...formData, description: e.target.value })
+            setFormData({ ...formData, contact: e.target.value })
           }
         />
         <TextField

@@ -1,5 +1,5 @@
 "use client";
-import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
+import { Button, Container, Grid, Stack, Typography } from "@mui/material";
 
 //components
 import PetCard, { PetCardProps } from "../components/common/petcard/page";
@@ -8,7 +8,6 @@ import { getAllPostsByUserId } from "../services/authService";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../context/authContext";
 import { deletePostById } from "../services/authService";
-import axios from "axios";
 
 export default function Dashboard() {
   const router = useRouter();
@@ -37,7 +36,7 @@ export default function Dashboard() {
           const transformedData: PetCardProps[] = data.map((pet: any) => ({
             id: pet.id || pet._id || `${pet.name}-${pet.age}`,
             name: pet.name,
-            shortDescription: pet.shortDescription || pet.description,
+            contact: pet.shortDescription || pet.description,
             age: pet.age,
             gender: pet.gender,
             location: pet.location,
@@ -109,7 +108,7 @@ export default function Dashboard() {
               <PetCard
                 id={item.id}
                 name={item.name}
-                shortDescription={item.shortDescription}
+                contact={item.contact}
                 age={item.age}
                 gender={item.gender}
                 location={item.location}
