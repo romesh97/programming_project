@@ -29,9 +29,9 @@ interface Link {
 }
 
 const links: Link[] = [
-  { id: 1, title: "Home", url: "/", isLogged: false },
-  { id: 2, title: "About", url: "/about", isLogged: false },
-  { id: 3, title: "Profile", url: "/profile", isLogged: false },
+  { id: 1, title: "Home", url: "/" },
+  { id: 2, title: "About", url: "/about" },
+  // { id: 3, title: "Profile", url: "/profile" }, // Remove this from the static links
 ];
 
 const TopNavbar: React.FC = () => {
@@ -128,7 +128,37 @@ const TopNavbar: React.FC = () => {
               />
             </Box>
           ))}
+
+          {isLoggedIn && (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <Link href="/profile" passHref>
+                <Button
+                  color="inherit"
+                  sx={{
+                    textTransform: "none",
+                    color: pathname === "/profile" ? "#F0801A" : "#5B5B5B",
+                    fontWeight: pathname === "/profile" ? "bold" : "normal",
+                    backgroundColor:
+                      pathname === "/profile" ? "#F2F3F3" : "inherit",
+                  }}
+                >
+                  Profile
+                </Button>
+              </Link>
+              <Divider
+                orientation="vertical"
+                sx={{ backgroundColor: "#EEFAF4", height: "20px" }}
+              />
+            </Box>
+          )}
         </Box>
+
         {!isLoggedIn ? (
           <Link href="/auth/login" passHref>
             <Button
