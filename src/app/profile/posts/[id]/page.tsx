@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import { useAuth } from "@/app/context/authContext";
 import Image from "next/image";
+import { useSnackbar } from "notistack";
 
 interface FormData {
   name: string;
@@ -39,6 +40,7 @@ interface PostData {
 }
 
 const EditPost: React.FC = () => {
+  const { enqueueSnackbar } = useSnackbar();
   const params = useParams();
   const postId = params.id as string;
   const { token } = useAuth();
@@ -133,11 +135,17 @@ const EditPost: React.FC = () => {
           },
         }
       );
-      alert(response.data.message);
+      enqueueSnackbar(`Post Updated Successfully`, {
+        variant: "success",
+        anchorOrigin: { horizontal: "center", vertical: "top" },
+      });
       window.location.href = "/profile";
     } catch (error) {
       console.error("Error updating post:", error);
-      alert("Failed to update post");
+      enqueueSnackbar(`Failed to update Post`, {
+        variant: "error",
+        anchorOrigin: { horizontal: "center", vertical: "top" },
+      });
     }
   };
 

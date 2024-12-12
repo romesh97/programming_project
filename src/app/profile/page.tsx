@@ -1,5 +1,6 @@
 "use client";
 import { Button, Container, Grid, Stack, Typography } from "@mui/material";
+import { useSnackbar } from "notistack";
 
 //components
 import PetCard, { PetCardProps } from "../components/common/petcard/page";
@@ -10,6 +11,7 @@ import { useAuth } from "../context/authContext";
 import { deletePostById } from "../services/authService";
 
 export default function Dashboard() {
+  const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
   const { token } = useAuth();
   const [postId, setPostId] = useState<string>("");

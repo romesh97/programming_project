@@ -13,6 +13,7 @@ import {
 import axios from "axios";
 import { useAuth } from "@/app/context/authContext";
 import Image from "next/image";
+import { useSnackbar } from "notistack";
 
 interface FormData {
   name: string;
@@ -27,6 +28,8 @@ interface FormData {
 }
 
 const CreatePost: React.FC = () => {
+  const { enqueueSnackbar } = useSnackbar();
+
   const { token } = useAuth();
   const router = useRouter();
   const [formData, setFormData] = useState<FormData>({
@@ -79,11 +82,17 @@ const CreatePost: React.FC = () => {
           },
         }
       );
-      alert(response.data.message);
+      enqueueSnackbar(`Post Created Successfully `, {
+        variant: "success",
+        anchorOrigin: { horizontal: "center", vertical: "top" },
+      });
       router.push("/profile");
     } catch (error) {
       console.error("Error creating post:", error);
-      alert("Failed to create post");
+      enqueueSnackbar(`Failed to create Post !!`, {
+        variant: "error",
+        anchorOrigin: { horizontal: "center", vertical: "top" },
+      });
     }
   };
 
