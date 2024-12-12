@@ -49,6 +49,10 @@ The Attributes are
 - Contact Number
 - images
 
+## DEPLOYMENT
+
+This is deployed on ubuntu server with nginx in Azure
+
 ## BACKEND URL
 
 The correct Backend Repo Link is : https://github.com/romesh97/programming_backend
