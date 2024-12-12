@@ -66,7 +66,10 @@ export default function Dashboard() {
   const handleDelete = async (postId: string) => {
     try {
       const message = await deletePostById(postId);
-      alert(message);
+      enqueueSnackbar(`${message}`, {
+        variant: "success",
+        anchorOrigin: { horizontal: "center", vertical: "top" },
+      });
 
       // Remove the deleted post from the local state
       setPosts((prevPosts) => prevPosts.filter((post) => post.id !== postId));
