@@ -87,6 +87,7 @@ const Login: React.FC = () => {
             variant="outlined"
             fullWidth
             margin="normal"
+            name="email"
             value={email}
             autoComplete="email"
             onChange={(e) => setEmail(e.target.value)}
@@ -95,6 +96,7 @@ const Login: React.FC = () => {
           <TextField
             label="Password"
             type="password"
+            name="password"
             variant="outlined"
             fullWidth
             margin="normal"
