@@ -31,7 +31,7 @@ interface Link {
 const links: Link[] = [
   { id: 1, title: "Home", url: "/" },
   { id: 2, title: "About", url: "/about" },
-  // { id: 3, title: "Profile", url: "/profile" }, // Remove this from the static links
+  // { id: 3, title: "Profile", url: "/profile" },
 ];
 
 const TopNavbar: React.FC = () => {
