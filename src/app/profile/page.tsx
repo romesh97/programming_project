@@ -82,7 +82,7 @@ export default function Dashboard() {
         mb={4}
       >
         <Typography variant="h4" fontWeight="bold">
-          MY POSTS {isLoggedIn.toString()}
+          MY POSTS
         </Typography>
         <Button
           sx={{

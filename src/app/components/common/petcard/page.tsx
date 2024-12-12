@@ -110,12 +110,14 @@ export default function PetCard({
               </Typography>
             </Stack>
           </Stack>
-          <Stack direction="row" alignItems="center" spacing={2} mt={1}>
-            <PhoneIcon sx={{ height: 20, width: 20 }} />
-            <Typography sx={{ fontSize: "13px", color: "#808080" }}>
-              {contact}
-            </Typography>
-          </Stack>
+          {!profileView && (
+            <Stack direction="row" alignItems="center" spacing={2} mt={1}>
+              <PhoneIcon sx={{ height: 20, width: 20 }} />
+              <Typography sx={{ fontSize: "13px", color: "#808080" }}>
+                {contact}
+              </Typography>
+            </Stack>
+          )}
         </Box>
       </Stack>
     </Card>
